@@ -19,8 +19,8 @@ while(True):
     ret, frame = cap.read()
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
-    cv2.imshow('frame',gray)
-    cv2.waitKey(0)
+    #cv2.imshow('frame',gray)
+    #cv2.waitKey(0)
 
     # We don't use the color information, so might as well save space
     faces = face_cascade.detectMultiScale(gray, 1.3, 5)
@@ -34,7 +34,7 @@ while(True):
         #cv2.waitKey(0)
         rc,png = cv2.imencode('.png', face)
         msg = png.tobytes()
-        print (len(png))
+        #print (len(png))
         
         mqttclient.publish(MQTT_TOPIC, payload=msg, qos=0, retain=False)
   
