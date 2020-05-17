@@ -14,19 +14,13 @@ def on_connect_local(client, userdata, flags, rc):
         client.subscribe(LOCAL_MQTT_TOPIC)
 
 def on_message(client,userdata, msg):
-  try:
     print("message received!")
-    # if we wanted to re-publish this message, something like this should work
     msg = msg.payload
     file_name="mybucket/face_"+str(x)
     image_file=open(file_name,"w")
     n=image_file.write(msg)
     image_file.close()
     x+=1
-
-
-  #except:
-  #print("Unexpected error:", sys.exc_info()[0])
 
 x=0
 local_mqttclient = mqtt.Client()
