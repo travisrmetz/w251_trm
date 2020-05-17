@@ -18,15 +18,24 @@ def on_message(client,userdata, msg):
     print("message received!")
     # if we wanted to re-publish this message, something like this should work
     msg = msg.payload
-    #s3
-    
+    file_name="/mybucket/face_"+str(x)
+    print(file_name)
+    x+=1
+    print(msg)
+    image_file=open(file_name,"w")
+    n=text_file.write(msg)
+    image_file.close()
+
+
   except:
     print("Unexpected error:", sys.exc_info()[0])
 
+x=0
 local_mqttclient = mqtt.Client()
 local_mqttclient.on_connect = on_connect_local
 local_mqttclient.connect(LOCAL_MQTT_HOST, LOCAL_MQTT_PORT, 60)
 local_mqttclient.on_message = on_message
 
+
 # go into a loop
-local_mqttclient.loop_forever()
+#local_mqttclient.loop_forever()
