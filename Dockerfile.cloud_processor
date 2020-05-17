@@ -1,0 +1,5 @@
+FROM ubunto
+
+RUN apt-get update && apt install -y git pkg-config wget build-essential cmake unzip curl \
+	python3-pip
+RUN pip3 install paho-mqtt
