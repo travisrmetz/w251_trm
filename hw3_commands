@@ -6,3 +6,9 @@ docker run --name forwarder --network hw03 -v /home/trmetz/hw3:/hw3 -ti forwarde
 
 #get opencv face processor running
 docker run -e DISPLAY=$DISPLAY --privileged --name fd1 --net host -v /home/trmetz/hw3:/hw3 -ti fd
+
+#from cloud, start cloud broker running
+docker run --name broker --network hw03-cloud -p 1883:1883 -ti broker-image mosquitto
+
+#from cloud, start cloud processor running
+docker run --name cloud_processor -v /root/w251_trm:/hw3 --network hw03-cloud -ti cloud-processor-image bash
