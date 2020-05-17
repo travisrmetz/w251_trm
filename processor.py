@@ -6,6 +6,8 @@
 import paho.mqtt.client as mqtt
 import os
 import cv2
+import numpy as np
+import time
 
 LOCAL_MQTT_HOST="broker"
 LOCAL_MQTT_PORT=1883
@@ -19,9 +21,13 @@ def on_message(client,userdata, msg):
     print("message received!")
     #msg = msg.payload
     image_array = np.fromstring(msg.payload, np.uint8)
-	image = cv2.imdecode(nparr,  cv2.IMREAD_GRAYSCALE)
-    file_name=os.path.join(os.getcwd(),"mybucket/face.png"+str(int(time.time()))+".png")    
+    print('image turned into array')
+    image = cv2.imdecode(image_array,cv2.IMREAD_GRAYSCALE)
+    print ('image encoded by cv2')
+    file_name=os.path.join(os.getcwd(),"mybucket/face_"+str(int(time.time()))+".png")
+    print('file name created',file_name)
     cv2.imwrite(file_name, image)
+    print('file written')
 
 local_mqttclient = mqtt.Client()
 local_mqttclient.on_connect = on_connect_local
