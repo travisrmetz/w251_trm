@@ -4,6 +4,8 @@
 #mosquitto_sub -t faces_topic -h broker
 
 import paho.mqtt.client as mqtt
+import os
+import cv2
 
 LOCAL_MQTT_HOST="broker"
 LOCAL_MQTT_PORT=1883
@@ -15,14 +17,12 @@ def on_connect_local(client, userdata, flags, rc):
 
 def on_message(client,userdata, msg):
     print("message received!")
-    msg = msg.payload
-    file_name="mybucket/face_"+str(x)
-    image_file=open(file_name,"w")
-    n=image_file.write(msg)
-    image_file.close()
-    x+=1
+    #msg = msg.payload
+    image_array = np.fromstring(msg.payload, np.uint8)
+	image = cv2.imdecode(nparr,  cv2.IMREAD_GRAYSCALE)
+    file_name=os.path.join(os.getcwd(),"mybucket/face.png"+str(int(time.time()))+".png")    
+    cv2.imwrite(file_name, image)
 
-x=0
 local_mqttclient = mqtt.Client()
 local_mqttclient.on_connect = on_connect_local
 local_mqttclient.connect(LOCAL_MQTT_HOST, LOCAL_MQTT_PORT, 60)
