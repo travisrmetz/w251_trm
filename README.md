@@ -24,6 +24,8 @@ I am not happy with a few things in retrospect and would work on the following t
 
 ```docker run -e DISPLAY=$DISPLAY --privileged --name fd1 --net host -v /home/trmetz/hw3:/hw3 -ti fd```
 
+From within /hw3, ```python3 video.py```
+
 #### get broker running
 
 ```docker run --name mosq-broker -p 1883:1883 -v /home/trmetz/hw3:/hw3 --network hw03 -ti broker-image mosquitto```
@@ -31,6 +33,8 @@ I am not happy with a few things in retrospect and would work on the following t
 #### get forwarder running
 
 ```docker run --name forwarder --network hw03 -v /home/trmetz/hw3:/hw3 -ti forwarder-image sh```
+
+From within /hw3, ```python3 forwarder.py```
 
 #### from cloud, start cloud broker running
 
@@ -43,6 +47,9 @@ I am not happy with a few things in retrospect and would work on the following t
 Set up S3 within that cloud processor:
 
 ```s3fs s3-trm /hw3/mybucket -o passwd_file=/hw3/.cos_creds -o sigv2 -o use_path_request_style -o url=https://s3.us-east.objectstorage.softlayer.net```
+
+From within /hw3, ```python3 processor.py```
+
 
 #### ssh IBM
 
