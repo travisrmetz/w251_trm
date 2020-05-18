@@ -63,5 +63,7 @@ When jetson  stops - restart the opencv python program - that times out with bro
 It stored hundreds in very short period of time!
 
 https://s3-trm.s3.us-east.cloud-object-storage.appdomain.cloud/face_1589758576.png
+
 https://s3-trm.s3.us-east.cloud-object-storage.appdomain.cloud/face_1589758625.png
+
 https://s3-trm.s3.us-east.cloud-object-storage.appdomain.cloud/face_1589759859.png
