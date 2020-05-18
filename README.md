@@ -21,15 +21,19 @@ I am not happy with a few things in retrospect and would work on the following t
 
 
 ####get opencv face processor running
+
 ```docker run -e DISPLAY=$DISPLAY --privileged --name fd1 --net host -v /home/trmetz/hw3:/hw3 -ti fd```
 
 ####get broker running
+
 ```docker run --name mosq-broker -p 1883:1883 -v /home/trmetz/hw3:/hw3 --network hw03 -ti broker-image mosquitto```
 
 ####get forwarder running
+
 ```docker run --name forwarder --network hw03 -v /home/trmetz/hw3:/hw3 -ti forwarder-image sh```
 
 ####from cloud, start cloud broker running
+
 ```docker run --name broker --network hw03-cloud -p 1883:1883 -ti broker-image mosquitto```
 
 ###from cloud, start cloud processor running
