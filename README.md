@@ -20,23 +20,23 @@ I am not happy with a few things in retrospect and would work on the following t
 3.  While I do have Dockerfiles for each of the containers, I did not automate the rest of the running of the various containers.
 
 
-####get opencv face processor running
+#### get opencv face processor running
 
 ```docker run -e DISPLAY=$DISPLAY --privileged --name fd1 --net host -v /home/trmetz/hw3:/hw3 -ti fd```
 
-####get broker running
+#### get broker running
 
 ```docker run --name mosq-broker -p 1883:1883 -v /home/trmetz/hw3:/hw3 --network hw03 -ti broker-image mosquitto```
 
-####get forwarder running
+#### get forwarder running
 
 ```docker run --name forwarder --network hw03 -v /home/trmetz/hw3:/hw3 -ti forwarder-image sh```
 
-####from cloud, start cloud broker running
+#### from cloud, start cloud broker running
 
 ```docker run --name broker --network hw03-cloud -p 1883:1883 -ti broker-image mosquitto```
 
-###from cloud, start cloud processor running
+#### from cloud, start cloud processor running
 
 ```docker run --name cloud_processor -v /root/w251_trm:/hw3 --privileged --network hw03-cloud -ti cloud-processor-image bash```
 
@@ -44,7 +44,7 @@ Set up S3 within that cloud processor:
 
 ```s3fs s3-trm /hw3/mybucket -o passwd_file=/hw3/.cos_creds -o sigv2 -o use_path_request_style -o url=https://s3.us-east.objectstorage.softlayer.net```
 
-####ssh IBM
+#### ssh IBM
 
 To get to IBM VSI that is running two containers for pictures
 
@@ -52,7 +52,7 @@ To get to IBM VSI that is running two containers for pictures
 
 When jetson  stops - restart the opencv python program - that times out with broker
 
-####Links to various pictures stored in my S3 bucket
+#### Links to various pictures stored in my S3 bucket
 It stored hundreds in very short period of time!
 
 https://s3-trm.s3.us-east.cloud-object-storage.appdomain.cloud/face_1589758576.png
