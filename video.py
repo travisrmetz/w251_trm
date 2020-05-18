@@ -8,7 +8,8 @@ cap = cv2.VideoCapture(0)
 face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 
 
-MQTT_HOST="172.18.0.2"
+#MQTT_HOST="172.18.0.2"
+MQTT_HOST="broker"
 MQTT_PORT=1883
 MQTT_TOPIC="faces_topic"
 mqttclient = mqtt.Client()
