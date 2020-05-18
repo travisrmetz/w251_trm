@@ -5,7 +5,8 @@ docker run --name mosq-broker -p 1883:1883 -v /home/trmetz/hw3:/hw3 --network hw
 docker run --name forwarder --network hw03 -v /home/trmetz/hw3:/hw3 -ti forwarder-image sh
 
 #get opencv face processor running
-docker run -e DISPLAY=$DISPLAY --privileged --name fd1 --net host -v /home/trmetz/hw3:/hw3 -ti fd
+docker run -e DISPLAY=$DISPLAY --privileged --name fd1 --network hw03 -v /home/trmetz/hw3:/hw3 -ti fd
+#then cd into hw3 and python3 video.py
 
 #from cloud, start cloud broker running
 docker run --name broker --network hw03-cloud -p 1883:1883 -ti broker-image mosquitto
